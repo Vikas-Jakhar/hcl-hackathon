@@ -1,0 +1,4 @@
+customer_id,account_id,first_name,last_name,gender,date_of_birth,registration_date,kyc_status,address_city,linked_account_id
+C00006,A00006,Customer0006,Sample0006,Female,1988-04-12,2025-02-01,Verified,Amritsar,A00006
+C00601,A00601,Customer0601,Sample0601,Male,1994-07-19,2026-10-09,Pending,Jalandhar,A00601
+C00602,A00602,Customer0602,Sample0602,Female,1991-11-03,2026-10-10,Verified,Ludhiana,A00602

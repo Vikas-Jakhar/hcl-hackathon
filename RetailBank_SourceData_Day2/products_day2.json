@@ -1,0 +1,20 @@
+[
+  {
+    "product_id": "P003",
+    "product_name": "Credit Card Product 03",
+    "category": "Credit Card",
+    "annual_fee": 750,
+    "interest_rate": 17.5,
+    "is_active": true,
+    "launch_date": "2021-04-04"
+  },
+  {
+    "product_id": "P013",
+    "product_name": "Savings Product 13",
+    "category": "Savings",
+    "annual_fee": 0,
+    "interest_rate": 3.25,
+    "is_active": true,
+    "launch_date": "2026-10-10"
+  }
+]

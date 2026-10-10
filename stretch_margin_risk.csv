@@ -1,0 +1,11 @@
+product_id,product_name,category,unit_price,cost_price,margin_per_unit,margin_pct
+P039,Fitness Item 39,Sports,5818.64,14577.41,-8758.77,-60.1
+P060,Staples Item 60,Grocery,11569.57,18576.25,-7006.68,-37.7
+P013,Appliances Item 13,Home & Kitchen,15622.68,24940.49,-9317.81,-37.4
+P006,Furniture Item 6,Home & Kitchen,2863.09,4549.93,-1686.84,-37.1
+P001,Accessories Item 1,Electronics,10660.79,16799.61,-6138.82,-36.5
+P010,Accessories Item 10,Electronics,1165.83,1730.66,-564.83,-32.6
+P065,Footwear Item 65,Fashion,15706.03,23290.69,-7584.66,-32.6
+P020,Beverages Item 20,Grocery,3634.57,5171.78,-1537.21,-29.7
+P028,Appliances Item 28,Home & Kitchen,7218.53,9457.58,-2239.05,-23.7
+P003,Staples Item 3,Grocery,9543.98,10602.65,-1058.67,-10.0

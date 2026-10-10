@@ -1,0 +1,70 @@
+product_id,product_name,category,lines_sold,units_sold,lines_returned,return_rate_pct,rank_highest,rank_lowest
+P029,Furniture Item 29,Home & Kitchen,8,29.0,2,25.0,1,69
+P018,Team Sports Item 18,Sports,6,23.0,1,16.7,2,67
+P026,Footwear Item 26,Fashion,6,12.0,1,16.7,2,67
+P042,Staples Item 42,Grocery,14,35.0,2,14.3,4,63
+P044,Beverages Item 44,Grocery,14,41.0,2,14.3,4,63
+P045,Footwear Item 45,Fashion,7,26.0,1,14.3,4,63
+P052,Womenswear Item 52,Fashion,7,27.0,1,14.3,4,63
+P058,Snacks Item 58,Grocery,9,26.0,1,11.1,8,62
+P030,Furniture Item 30,Home & Kitchen,10,28.0,1,10.0,9,60
+P069,Mobiles Item 69,Electronics,10,32.0,1,10.0,9,60
+P013,Appliances Item 13,Home & Kitchen,11,23.0,1,9.1,11,59
+P040,Footwear Item 40,Fashion,12,44.0,1,8.3,12,56
+P049,Beverages Item 49,Grocery,12,34.0,1,8.3,12,56
+P070,Footwear Item 70,Fashion,12,35.0,1,8.3,12,56
+P034,Fitness Item 34,Sports,13,38.0,1,7.7,15,52
+P035,Cookware Item 35,Home & Kitchen,13,35.0,1,7.7,15,52
+P054,Fitness Item 54,Sports,13,41.0,1,7.7,15,52
+P059,Cookware Item 59,Home & Kitchen,13,40.0,1,7.7,15,52
+P009,Furniture Item 9,Home & Kitchen,14,32.0,1,7.1,19,50
+P057,Team Sports Item 57,Sports,14,43.0,1,7.1,19,50
+P007,Outdoor Item 7,Sports,17,50.0,1,5.9,21,47
+P021,Fitness Item 21,Sports,17,52.0,1,5.9,21,47
+P068,Staples Item 68,Grocery,17,56.0,1,5.9,21,47
+P065,Footwear Item 65,Fashion,19,66.0,1,5.3,24,46
+P037,Mobiles Item 37,Electronics,20,49.0,1,5.0,25,45
+P001,Accessories Item 1,Electronics,6,14.0,0,0.0,26,1
+P002,Furniture Item 2,Home & Kitchen,12,44.0,0,0.0,26,1
+P003,Staples Item 3,Grocery,10,29.0,0,0.0,26,1
+P004,Appliances Item 4,Home & Kitchen,15,57.0,0,0.0,26,1
+P006,Furniture Item 6,Home & Kitchen,11,23.0,0,0.0,26,1
+P008,Menswear Item 8,Fashion,9,28.0,0,0.0,26,1
+P010,Accessories Item 10,Electronics,10,31.0,0,0.0,26,1
+P011,Beverages Item 11,Grocery,8,29.0,0,0.0,26,1
+P012,Menswear Item 12,Fashion,13,42.0,0,0.0,26,1
+P014,Audio Item 14,Electronics,9,27.0,0,0.0,26,1
+P015,Team Sports Item 15,Sports,9,21.0,0,0.0,26,1
+P016,Footwear Item 16,Fashion,10,31.0,0,0.0,26,1
+P017,Furniture Item 17,Home & Kitchen,8,23.0,0,0.0,26,1
+P019,Beverages Item 19,Grocery,8,25.0,0,0.0,26,1
+P020,Beverages Item 20,Grocery,14,43.0,0,0.0,26,1
+P022,Footwear Item 22,Fashion,8,27.0,0,0.0,26,1
+P023,Footwear Item 23,Fashion,11,34.0,0,0.0,26,1
+P024,Footwear Item 24,Fashion,7,22.0,0,0.0,26,1
+P025,Womenswear Item 25,Fashion,13,29.0,0,0.0,26,1
+P027,Appliances Item 27,Home & Kitchen,14,40.0,0,0.0,26,1
+P028,Appliances Item 28,Home & Kitchen,8,20.0,0,0.0,26,1
+P031,Accessories Item 31,Electronics,15,43.0,0,0.0,26,1
+P032,Womenswear Item 32,Fashion,9,23.0,0,0.0,26,1
+P033,Outdoor Item 33,Sports,9,30.0,0,0.0,26,1
+P036,Staples Item 36,Grocery,9,26.0,0,0.0,26,1
+P038,Womenswear Item 38,Fashion,9,26.0,0,0.0,26,1
+P039,Fitness Item 39,Sports,7,24.0,0,0.0,26,1
+P041,Cookware Item 41,Home & Kitchen,16,52.0,0,0.0,26,1
+P043,Furniture Item 43,Home & Kitchen,9,28.0,0,0.0,26,1
+P046,Audio Item 46,Electronics,10,30.0,0,0.0,26,1
+P047,Staples Item 47,Grocery,6,19.0,0,0.0,26,1
+P048,Staples Item 48,Grocery,14,46.0,0,0.0,26,1
+P050,Beverages Item 50,Grocery,9,28.0,0,0.0,26,1
+P051,Footwear Item 51,Fashion,5,12.0,0,0.0,26,1
+P053,Outdoor Item 53,Sports,15,45.0,0,0.0,26,1
+P055,Staples Item 55,Grocery,15,45.0,0,0.0,26,1
+P056,Audio Item 56,Electronics,11,36.0,0,0.0,26,1
+P060,Staples Item 60,Grocery,9,28.0,0,0.0,26,1
+P061,Furniture Item 61,Home & Kitchen,18,55.0,0,0.0,26,1
+P062,Cookware Item 62,Home & Kitchen,13,46.0,0,0.0,26,1
+P063,Beverages Item 63,Grocery,13,43.0,0,0.0,26,1
+P064,Womenswear Item 64,Fashion,6,18.0,0,0.0,26,1
+P066,Staples Item 66,Grocery,6,23.0,0,0.0,26,1
+P067,Appliances Item 67,Home & Kitchen,9,29.0,0,0.0,26,1

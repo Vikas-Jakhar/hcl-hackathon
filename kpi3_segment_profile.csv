@@ -1,0 +1,6 @@
+customer_segment,customer_count,recognised_orders,total_net_revenue,avg_order_value
+Platinum,35,73,6289412.1,86156.33
+Gold,23,45,4507926.5,100176.14
+Silver,26,47,4080870.94,86827.04
+Bronze,24,43,3460674.77,80480.81
+Unknown,1,11,920239.68,83658.15

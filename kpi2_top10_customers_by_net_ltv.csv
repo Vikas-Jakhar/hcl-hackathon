@@ -1,0 +1,11 @@
+customer_id,customer_name,customer_segment,completed_orders,net_ltv
+C0118,Utkarsh Bhat,Gold,3,532447.01
+C0107,Eesha Sethi,Silver,2,463604.51
+C0144,Raksha Raj,Platinum,5,438829.35
+C0061,Yadavi Bhakta,Platinum,2,341730.61
+C0033,Hamsini Rao,Gold,1,333060.9
+C0148,Ucchal Thaker,Bronze,3,329199.63
+C0142,Zansi Prasad,Platinum,4,328510.36
+C0037,Gautam Rana,Gold,2,323740.66
+C0001,Isaac Bakshi,Bronze,4,302063.99
+C0011,Tanay Toor,Silver,2,301477.71

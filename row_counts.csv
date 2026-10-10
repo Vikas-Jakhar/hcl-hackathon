@@ -1,0 +1,8 @@
+file,raw_rows,exact_duplicates_removed,conflicting_duplicates_resolved,rejected_to_quarantine,silver_rows
+customers,163,5,8,0,150
+suppliers,19,0,1,0,18
+products,75,0,5,0,70
+orders,323,3,0,6,314
+order_items,802,5,0,23,774
+payments,329,4,0,13,312
+returns,68,3,0,6,59

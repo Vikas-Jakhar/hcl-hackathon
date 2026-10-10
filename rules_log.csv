@@ -1,0 +1,60 @@
+rule_id,file,column,issue,action,rows_affected,rationale
+C-01,customers,"first_name,last_name,email",Leading/trailing spaces,Trimmed whitespace,7,Spaces would break joins and de-duplication
+C-02,customers,email,Upper-case emails (e.g. YASH.WALI34@EXAMPLE.COM),Lower-cased,5,Emails are case-insensitive; needed to spot re-sent rows
+C-03,customers,customer_id,Re-sent rows: same customer_id and payload (differ only by case/space),Kept one row per customer_id,5,Exact duplicates add no information
+C-04,customers,customer_id,"Same person registered under 2 customer_ids (same name, address, phone; second record has a gmail address)",Merged into the lowest customer_id; old ids kept in customer_alias and orders re-pointed,8,Original (lowest) id is the one whose email follows the <name><id>@example.com pattern
+C-05,customers,email,Blank email,"Left NULL, flagged",6,Email is not needed by any KPI; never invent an address
+C-05,customers,email,Invalid email (no '@'),"Set NULL, flagged",2,Email is not needed by any KPI; never invent an address
+C-05,customers,email,Truncated email domain (name@example),Completed to name@example.com,4,Email is not needed by any KPI; never invent an address
+C-06,customers,phone,"Mixed formats: (595) 148-4656, +91-8740345054, 06676650618",Standardised to 10 digits,142,One format for matching/contact
+C-06b,customers,phone,"Placeholder or missing phone (0000000000, unknown, blank)","Set NULL, flagged",8,Placeholders are not real numbers
+C-07,customers,zip_code,"Placeholder zip (N/A, XXXXXX, blank)",Set NULL,6,Kept as text so leading zeros survive
+C-08,customers,city,"Case/spelling variants (BANGALORE, Bengaluru, mumbai, New Delhi)","Mapped to one value (Bengaluru, Delhi, Mumbai ...)",33,Bangalore = Bengaluru; New Delhi is part of Delhi
+C-09,customers,customer_segment,"Typos and casing (Glod, Broze, Silverr, PLATINUM)",Mapped to Bronze/Silver/Gold/Platinum,111,Needed for KPI 3 (segment profile)
+C-10,customers,is_active,Boolean written as Y/yes/true/1/N/no/False/0,Converted to 1/0,150,One boolean representation
+C-11,customers,signup_date,"4 date formats (2021-01-02, 19-May-2023, 08/28/2023, 26/11/2022)",Parsed to ISO yyyy-mm-dd,146,One date type
+C-11b,customers,signup_date,Ambiguous dd/mm vs mm/dd (both parts <= 12),Read as DD/MM (assumption),23,Indian retailer; assumption documented in README
+C-11c,customers,signup_date,Sign-up date in the future (e.g. 2027-01-15),"Set NULL, flagged",2,A customer cannot register after the processing date
+C-11d,customers,signup_date,Blank or 'unknown' sign-up date,Left NULL,4,Not needed by any KPI
+S-01,suppliers,supplier_id,Same supplier_id (S004) with two different names/countries,Kept the record with a known country (first seen on tie),1,Which-record-wins: the more complete record; the other is logged here
+S-02,suppliers,country,Missing country (null),Set to 'Unknown',3,Keeps the supplier in reports
+S-03,suppliers,rating,"Inconsistent scale: most ratings 1-5, some 7.5 / 7.7 / 9.4 look like a 0-10 scale",Values > 5 treated as 0-10; all converted to 0-1 (rating_norm),3,Assumption: a value <= 5 on a 0-10 scale cannot be detected
+S-04,suppliers,is_preferred,"Mixed boolean forms (N, Y, true, false, 'true')",Converted to 1/0,18,One boolean representation
+S-05,suppliers,contract_start_date,"Two date formats (2018-12-11, 29-Aug-2021)",Parsed to ISO date,18,One date type
+P-01,products,product_id,"Same product_id twice with different price (P001, P003, P039, P060, P070); one row is named '(Revised)'","Kept the '(Revised)' row, removed the suffix from the name",5,Which-record-wins: the revised row is the latest version of the product
+P-02,products,category,"Casing/typos (fashion, FASHION, home & kitchen, Electornics)","Mapped to 5 categories: Electronics, Fashion, Grocery, Home & Kitchen, Sports",46,KPI 1 groups by category
+P-03,products,category,Blank category,Derived from sub_category (e.g. Cookware -> Home & Kitchen),5,Each sub_category belongs to exactly one category in the rest of the file
+P-04,products,product_name,Blank product name,Rebuilt as '<sub_category> Item <n>' (catalogue naming pattern),2,Flagged in quality_flags
+P-05,products,unit_price,"Currency-formatted values (₹1,179.68)",Parsed to number,4,Numeric type
+P-05b,products,unit_price,Zero or negative list price,"Set NULL, flagged (sale price taken from order lines)",2,A list price <= 0 is impossible
+P-06,products,is_active,Boolean as Y/yes/true/1/N/no/False/0,Converted to 1/0,70,
+P-07,products,launch_date,3 date formats; ambiguous dd/mm vs mm/dd,"Parsed, ambiguous read as DD/MM",70,
+P-08,products,supplier_id,"supplier_id not in suppliers.json (S92, S93, S96, S98)","Product kept, supplier set to UNKNOWN member, flagged",4,Product sales still count; excluded only from the supplier scorecard
+O-01,orders,order_id,"Re-sent rows: identical order_id and payload (O00012, O00108, O00170)",Kept one row per order_id,3,Exact duplicates add no information
+O-02,orders,order_status,"Casing/typos (COMPLETE, Complted, PENDING, Cancled, returned)",Mapped to Completed/Pending/Cancelled/Returned,231,KPI 1/2/4/7 filter on order status
+O-03,orders,channel,"Casing/synonyms (APP, app, WEB, Instore, store, In-store)",Mapped to Web/App/In-store,230,KPI 4 groups by channel
+O-06,orders,customer_id,customer_id not present in customers.csv,"Order kept, customer set to UNKNOWN member, flagged",15,"Revenue still counts; excluded only from customer-level KPIs (2, 3, 7)"
+O-07,orders,order_date,"Mixed formats (2024-10-24, 13-Feb-2025, 10/06/2025)",Parsed to ISO date,320,One date type
+O-07b,orders,order_date,Ambiguous dd/mm vs mm/dd (both parts <= 12),Read as DD/MM (assumption),63,Indian retailer; assumption documented in README
+O-07c,orders,order_date,"Order dated before 2023-01-01 (outlier, bulk of data is 2024-2025)",Row quarantined (rejected),6,Treated as an out-of-scope outlier rather than guessed at
+OI-01,order_items,order_item_id,Re-sent rows: identical order_item_id and payload,Kept one row per order_item_id,5,Exact duplicates add no information
+OI-02,order_items,quantity,quantity=0 but a non-zero line_total was charged,"Recomputed quantity = line_total / (unit_price x (1 - discount)), rounded",4,line_total is the amount actually charged and is treated as authoritative
+OI-03,order_items,discount_pct,"Impossible discount (-10%, 150%)","Recomputed discount = 1 - line_total / (unit_price x quantity), rounded, clipped 0-100%",7,line_total is treated as authoritative; discount_pct is informational only
+OI-04,order_items,order_id,order_id not present in orders.csv (or its order was quarantined),Row rejected to quarantine,23,A sales line cannot exist without its parent order
+OI-05,order_items,product_id,product_id not present in products.csv (P999 and similar),"Line kept, product set to UNKNOWN member, flagged",8,"Revenue still counts; excluded only from product-level KPIs (5, margin-risk)"
+PAY-01,payments,payment_id,"Re-sent rows: identical payment_id and payload (PM00067, PM00137, PM00141, PM00237)",Kept one row per payment_id,4,A genuine second payment attempt for the same order keeps a different payment_id and both rows are kept for KPI 8 (reconciliation)
+PAY-02,payments,amount,"Currency-formatted values (₹210,054.96, $20,632.40, 73078.38 INR)",Parsed to number,106,Numeric type
+PAY-03,payments,payment_status,"Casing/typos (SUCCESS, success, Succeded, FAILED)",Mapped to Success/Failed/Pending/Refunded,231,KPI 8 groups by status
+PAY-04,payments,payment_date,"Mixed formats (09/23/2024, 03-Nov-2024)",Parsed to ISO date,315,One date type
+PAY-04b,payments,payment_date,Ambiguous dd/mm vs mm/dd (both parts <= 12),Read as DD/MM (assumption),56,Indian retailer; assumption documented in README
+PAY-04c,payments,payment_date,Blank payment date,Left NULL,10,Not needed to net revenue; payment-after-order timing is not enforced (see README)
+PAY-05,payments,order_id,order_id not present in orders.csv (or its order was quarantined),Row rejected to quarantine,13,A payment cannot be reconciled without its order
+RET-01,returns,return_id,"Re-sent rows: identical return_id and payload (R0029, R0002, R0045)",Kept one row per return_id,3,Exact duplicates add no information
+RET-02,returns,return_reason,"Casing/typos (DEFECTIVE, Damged, not as described)",Mapped to Wrong Item/Size Issue/Not as Described/Defective/Damaged,36,Descriptive only; not used by any KPI
+RET-03,returns,return_status,"Casing (APPROVED, approved, rejected)",Mapped to Approved/Rejected/Pending,36,Only Approved returns are netted against revenue (see README)
+RET-04,returns,return_date,"Mixed formats (21-Jan-2024, 11/12/2025)",Parsed to ISO date,65,One date type
+RET-04b,returns,return_date,Ambiguous dd/mm vs mm/dd (both parts <= 12),Read as DD/MM (assumption),9,Indian retailer; assumption documented in README
+RET-04c,returns,return_date,"Same date (2023-01-01) repeated 5 times - a placeholder, not a real date","Set NULL, flagged",5,"Return month is not used by any KPI, so this is informational only"
+RET-06,returns,order_item_id,order_item_id not present in order_items.csv (or its line was rejected),Row rejected to quarantine,6,A return cannot be netted without its order line
+RET-07,returns,refund_amount,Blank refund_amount on an Approved return,Imputed as the full line amount,1,An approved return with no stated refund is assumed to be a full refund
+RET-08,returns,refund_amount,refund_amount exceeds the order line's net_amount,"Capped at the line's net_amount, flagged",4,A refund cannot exceed what was charged for the line
